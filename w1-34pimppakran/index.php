@@ -10,6 +10,9 @@
       echo "<h1 style='color:green'>w1 - Pimpakarn srisamai Bit.2/3 No.34</h1>";
     ?>
 
+
+    <a href="while.php">while loop</a>
+
 <form action="">
     <label for="">เลขเเม่สูตรคูณ</label> <br>
     <input type="number" name="num" id="">
@@ -26,7 +29,7 @@
 
             //. เริ่มต้น  สิ้นสุด  เพิ่มทีละ 
              for($i =1; $i <= 12; $i++){
-                 echo $i . "<br>";
+                 echo $num ." x " . $i . " = " .  $num * $i ."<br>";
             }
         }
     ?>

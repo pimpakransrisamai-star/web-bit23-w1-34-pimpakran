@@ -11,6 +11,7 @@
     ?>
 
 
+    <a href="index.php">index loop</a>
 
 <form action="">
     <label for="">เลขเเม่สูตรคูณ</label> <br>
@@ -20,87 +21,148 @@
     </form>
 
 <?php
-    if( isset( $_GET["num"])  ){
+        if (isset($_GET["num"])) {
+            $num = $_GET["num"];
+            echo "<h2>สูตรคูณแม่ " . $num . "</h2>";
 
-        $num = $_GET["num"];
-
-        echo "<h2>สูตรคูณเเม่ ". $num ."</h2>";
-        $i=1;
-
-        while($i<=12) {
-            echo $num ." x " . $i . " = " .  $num * $i ."<br>";
-              $i++;
-        }
+            $i = 1;                          
+            while ($i <= 12) {               
+                echo "<span style='color:#888;font-size:14px;line-height:1.9'>"
+                     . $num . "x" . $i . "=" . $num * $i
+                     . "</span><br>";
+                $i++;                      
+            }
         }
     ?>
 
+
 </body>
 </html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สูตรคูณ</title>
+
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    font-family: Tahoma, sans-serif;
-    background: linear-gradient(135deg,#f7d6ff,#ffd6ec);
-    text-align: center;
-    padding-top: 40px;
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    text-align:center;
+    padding:30px;
+    overflow:hidden;
+
+    /* พื้นหลังม่วงไล่สี */
+    background: linear-gradient(-45deg,
+        #2b0a3d,
+        #5a189a,
+        #7b2cbf,
+        #9d4edd,
+        #c77dff
+    );
+    background-size:400% 400%;
+    animation: gradientMove 8s ease infinite;
 }
 
+/* เคลื่อนสีพื้นหลัง */
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* แสงกระจกสะท้อนวิ่งผ่าน */
+body::before{
+    content:"";
+    position:fixed;
+    top:-50%;
+    left:-120%;
+    width:60%;
+    height:200%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.8),
+        transparent
+    );
+    transform:rotate(25deg);
+    animation: shine 2.8s linear infinite;
+}
+
+/* วิ่งเหมือนแสงสะท้อนกระจก */
+@keyframes shine{
+    0%{
+        left:-120%;
+    }
+    100%{
+        left:150%;
+    }
+}
+
+/* ทำให้เนื้อหาอยู่เหนือเอฟเฟกต์ */
+h1,h2,a,form,span,label{
+    position:relative;
+    z-index:2;
+}
+
+/* หัวข้อเรืองแสง */
 h1{
-    color: #9c27b0 !important;
-    background: white;
-    display: inline-block;
-    padding: 15px 25px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    color:#fff !important;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px #c77dff,
+        0 0 25px #9d4edd;
+    margin-bottom:20px;
 }
 
+/* ลิงก์ */
+a{
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* ฟอร์ม */
 form{
-    background: white;
-    width: 350px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    margin:20px 0;
 }
 
 label{
-    font-size: 18px;
-    color: #8e44ad;
-    font-weight: bold;
+    color:white;
+    font-size:18px;
 }
 
-input[type="number"]{
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #d291ff;
-    border-radius: 10px;
+/* input สวยขึ้น */
+input{
+    padding:10px;
+    border-radius:12px;
+    border:none;
+    outline:none;
 }
 
 input[type="submit"]{
-    background: linear-gradient(90deg,#c86bff,#ff85c0);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
+    background:#7b2cbf;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
 }
 
 input[type="submit"]:hover{
-    opacity: .9;
+    transform:scale(1.05);
+    background:#9d4edd;
 }
 
-h2{
-    color: #c2185b;
-    background: white;
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 15px;
-    margin-top: 20px;
-}
-
-body br + *{
-    color: #6a1b9a;
+/* ผลลัพธ์สูตรคูณ */
+span{
+    display:inline-block;
+    color:#f3e8ff !important;
+    text-shadow:0 0 5px rgba(255,255,255,0.3);
 }
 </style>
 
+</head>
